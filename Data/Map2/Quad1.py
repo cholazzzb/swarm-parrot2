@@ -1,0 +1,1 @@
+Quad1 = undefined

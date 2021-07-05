@@ -1,0 +1,32 @@
+{
+  "name": "swarm-parrot2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "checkBattery": "node ./Utils/checkBattery.js",
+    "land": "node ./Utils/land.js",
+    "takeoff": "node ./Utils/takeoff.js",
+    "M1Q1": "node ./Experiments/Map1/Quad1.js",
+    "M1Q2": "node ./Experiments/Map2/Quad2.js",
+    "M2Q1": "node ./Experiments/Map1/Quad1.js",
+    "M2Q2": "node ./Experiments/Map2/Quad2.js",
+    "M3Q1": "node ./Experiments/Map1/Quad1.js",
+    "M3Q2": "node ./Experiments/Map2/Quad2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cholazzzb/swarm-parrot2.git"
+  },
+  "author": "Nicholas Biantoro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cholazzzb/swarm-parrot2/issues"
+  },
+  "homepage": "https://github.com/cholazzzb/swarm-parrot2#readme",
+  "dependencies": {
+    "ar-drone": "^0.3.3",
+    "ardrone-autonomy": "^0.1.2"
+  }
+}
