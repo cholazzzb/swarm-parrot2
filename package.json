@@ -8,13 +8,17 @@
     "checkBattery": "node ./Utils/checkBattery.js",
     "land": "node ./Utils/land.js",
     "takeoff": "node ./Utils/takeoff.js",
+    "server": "node ./Utils/server.js",
     "test": "node ./Utils/test.js",
     "M1Q1": "node ./Experiments/Map1/Quad1.js",
     "M1Q2": "node ./Experiments/Map1/Quad2.js",
+    "M1FC": "node ./Experiments/Map1/FormationController.js",
     "M2Q1": "node ./Experiments/Map2/Quad1.js",
     "M2Q2": "node ./Experiments/Map2/Quad2.js",
+    "M2FC": "node ./Experiments/Map2/FormationController.js",
     "M3Q1": "node ./Experiments/Map3/Quad1.js",
-    "M3Q2": "node ./Experiments/Map3/Quad2.js"
+    "M3Q2": "node ./Experiments/Map3/Quad2.js",
+    "M3FC": "node ./Experiments/Map3/FormationController.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,8 @@
   "homepage": "https://github.com/cholazzzb/swarm-parrot2#readme",
   "dependencies": {
     "ar-drone": "^0.3.3",
-    "ardrone-autonomy": "^0.1.2"
+    "ardrone-autonomy": "^0.1.2",
+    "socket.io": "^4.1.2",
+    "socket.io-client": "^4.1.2"
   }
 }

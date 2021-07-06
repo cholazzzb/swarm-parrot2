@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const dataName = [
+const dataNames = [
   "time",
   "stateX",
   "stateY",
@@ -22,16 +22,26 @@ const dataName = [
 
 function DataRecorder() {
   this.data = {};
-  dataName.forEach((name) => {
+  dataNames.forEach((name) => {
     this.data[name] = [];
   });
+
+  this.velData = {
+    x: [],
+    y: []
+  }
 }
 
 DataRecorder.prototype.addData = function (newDatas) {
   newDatas.forEach((newData, dataIndex) => {
-    this.data[dataName[dataIndex]].push(newData);
+    this.data[dataNames[dataIndex]].push(newData);
   });
 };
+
+DataRecorder.prototype.addVelData = function([xVel, yVel]){
+  this.velData.x.push(xVel)
+  this.velData.y.push(yVel)
+}
 
 DataRecorder.prototype.saveData = function (extension, folderName, fileName) {
   let content;
