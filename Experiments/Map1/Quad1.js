@@ -28,7 +28,8 @@ try {
 
   console.log("GO!");
   client1.after(5000, () => {
-    control1.go({ x: 5, y: 0, z: 0.7 });
+    control1.zero()
+    control1.go({ x: 3, y: 0, z: 0.7 });
   });
 
   client1.after(5000, () => {

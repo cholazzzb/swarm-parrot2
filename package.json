@@ -8,12 +8,13 @@
     "checkBattery": "node ./Utils/checkBattery.js",
     "land": "node ./Utils/land.js",
     "takeoff": "node ./Utils/takeoff.js",
+    "test": "node ./Utils/test.js",
     "M1Q1": "node ./Experiments/Map1/Quad1.js",
-    "M1Q2": "node ./Experiments/Map2/Quad2.js",
-    "M2Q1": "node ./Experiments/Map1/Quad1.js",
+    "M1Q2": "node ./Experiments/Map1/Quad2.js",
+    "M2Q1": "node ./Experiments/Map2/Quad1.js",
     "M2Q2": "node ./Experiments/Map2/Quad2.js",
-    "M3Q1": "node ./Experiments/Map1/Quad1.js",
-    "M3Q2": "node ./Experiments/Map2/Quad2.js"
+    "M3Q1": "node ./Experiments/Map3/Quad1.js",
+    "M3Q2": "node ./Experiments/Map3/Quad2.js"
   },
   "repository": {
     "type": "git",

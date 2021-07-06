@@ -2,7 +2,7 @@ import autonomy from "ardrone-autonomy";
 import DataRecorder from "../../Utils/DataRecorder.js";
 
 const folderName = "./Data/Map1";
-const fileName = "Quad1";
+const fileName = "Quad2";
 
 const Recorder = new DataRecorder();
 let initialTime = new Date().getTime();
@@ -11,15 +11,30 @@ var [client1, control1, mission1] = autonomy.createMission({
   ip: "192.168.2.2",
 });
 
+let xPos
 control1.on("controlData", (newData) => {
   let time = Math.round((new Date().getTime() - initialTime) / 10, 2) / 100;
-  Recorder.addState([
+  // console.log("state", newData);
+  Recorder.addData([
     time,
     newData.state.x,
     newData.state.y,
     newData.state.z,
     newData.state.yaw,
+    newData.error.ex,
+    newData.error.ey,
+    newData.error.ez,
+    newData.error.eyaw,
+    newData.goal.x,
+    newData.goal.y,
+    newData.goal.z,
+    newData.goal.yaw,
+    newData.control.ux,
+    newData.control.uy,
+    newData.control.uz,
+    newData.control.uyaw,
   ]);
+  xPos = newData.state.x
 });
 
 try {
@@ -28,15 +43,23 @@ try {
 
   console.log("GO!");
   client1.after(5000, () => {
-    control1.go({ x: 5, y: 0, z: 0.7 });
-  });
-
-  client1.after(5000, () => {
-    console.log("LAND!");
-    Recorder.saveData("py", folderName, fileName);
-    console.log("DATA SAVED!");
-    client1.stop();
-    client1.land();
+    // control1.zero();
+    // control1.go({ x: 0, y: 0, z: 0.7, yaw: 0 });
+    let target = 0.0;
+    var intervalId = setInterval(() => {
+      console.log("NEW TARGET", target);
+      target = Math.round((target + 0.1) * 100) / 100;
+      control1.go({ x: target, y: 0, z: 0, yaw: 0 });
+      if (target == 2.0) {
+        console.log("XPOS", xPos)
+        console.log("LAND!");
+        console.log("DATA SAVED!");
+        client1.stop();
+        client1.land();
+        Recorder.saveData("py", folderName, fileName);
+        clearInterval(intervalId);
+      }
+    }, 500);
   });
 } catch (error) {
   console.error(`ERROR! : ${error}`);

@@ -1,36 +1,36 @@
 import fs from "fs";
 
+const dataName = [
+  "time",
+  "stateX",
+  "stateY",
+  "stateZ",
+  "stateYaw",
+  "errX",
+  "errY",
+  "errZ",
+  "errYaw",
+  "goalX",
+  "goalY",
+  "goalZ",
+  "goalYaw",
+  "ux",
+  "uy",
+  "uz",
+  "uyaw",
+];
+
 function DataRecorder() {
-  this.state = {
-    time: [],
-    xPos: [],
-    yPos: [],
-    zPos: [],
-    yaw: [],
-  };
-  this.goal = {
-    goal: [],
-  };
-  this.control = {
-    u_x: [],
-    u_y: [],
-    u_z: [],
-    u_yaw: [],
-  };
+  this.data = {};
+  dataName.forEach((name) => {
+    this.data[name] = [];
+  });
 }
 
-DataRecorder.prototype.addState = function ([
-  newTime,
-  newX,
-  newY,
-  newZ,
-  newYaw,
-]) {
-  this.state.time.push(newTime);
-  this.state.xPos.push(newX);
-  this.state.yPos.push(newY);
-  this.state.zPos.push(newZ);
-  this.state.yaw.push(newYaw);
+DataRecorder.prototype.addData = function (newDatas) {
+  newDatas.forEach((newData, dataIndex) => {
+    this.data[dataName[dataIndex]].push(newData);
+  });
 };
 
 DataRecorder.prototype.saveData = function (extension, folderName, fileName) {
@@ -38,7 +38,7 @@ DataRecorder.prototype.saveData = function (extension, folderName, fileName) {
   switch (extension) {
     case "js":
       content = `const ${fileName} = ${JSON.stringify(
-        this.data
+        this.state
       )}; export default ${fileName}`;
       break;
     case "py":
