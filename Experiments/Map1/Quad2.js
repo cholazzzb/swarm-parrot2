@@ -1,8 +1,13 @@
 import autonomy from "ardrone-autonomy";
+import socketIOClient from "socket.io-client"
 import DataRecorder from "../../Utils/DataRecorder.js";
+import {QUAD2_NAVDATA, QUAD2_VELDATA, QUAD2_REQUEST, QUAD2_COMMAND} from "../../Utils/CONSTANT.js";
 
 const folderName = "./Data/Map1";
 const fileName = "Quad2";
+
+const SOCKET_SERVER_URL = "http://localhost:4000";
+const socketConnection = socketIOClient(SOCKET_SERVER_URL)
 
 const Recorder = new DataRecorder();
 let initialTime = new Date().getTime();
@@ -15,13 +20,13 @@ client1.on("navdata", (data) => {
   if (data.demo != undefined) {
     let demoData = Object(data.demo);
     Recorder.addVelData([demoData.velocity.x, demoData.velocity.y]);
+    socketConnection.emit(QUAD2_VELDATA, demoData.velocity)
   }
 });
 
 let xPos;
 control1.on("controlData", (newData) => {
   let time = Math.round((new Date().getTime() - initialTime) / 10, 2) / 100;
-  // console.log("state", newData);
   Recorder.addData([
     time,
     newData.state.x,
@@ -41,6 +46,12 @@ control1.on("controlData", (newData) => {
     newData.control.uz,
     newData.control.uyaw,
   ]);
+  socketConnection.emit(QUAD2_NAVDATA, {
+    x: newData.state.x,
+    y: newData.state.y,
+    z: newData.state.z,
+    yaw: newData.state.yaw
+  })
   xPos = newData.state.x;
 });
 
