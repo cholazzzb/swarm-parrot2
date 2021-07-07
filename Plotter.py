@@ -41,7 +41,7 @@ plt.plot(exData['time'], exData['stateY'], label="yPos")
 plt.plot(exData['time'], exData['stateZ'], label="zPos")
 plt.xlabel("Waktu (sekon)")
 plt.ylabel("Posisi (meter)")
-plt.legend(loc="lower right")
+plt.legend(loc="upper left")
 plt.savefig(folderName + "/"+ fileName + "Pos")
 
 # Plot Yaw

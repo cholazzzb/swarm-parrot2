@@ -37,7 +37,7 @@ function VirtualStructure(Formation_Reference_Point) {
   this.Formation_Reference_Point = Formation_Reference_Point;
   this.VS_Points = getShapePoints("line"); // Current Quadrotors Position in VS
   // this.Current_Positions = []; // Current Quadrotors Position in Real World
-  this.Movement_Range = 0.2;
+  this.Movement_Range = 0.1
 }
 
 VirtualStructure.prototype.setCurrentVSPoints = function (Current_VS_Points) {
@@ -95,7 +95,6 @@ VirtualStructure.prototype.calculateNewVSPoint = function (APFForce) {
   ) {
     this.VS_Points[VS_Point_Index].push(0);
   }
-  // console.log("NEW VS POINTS", this.VS_Points);
   return this.VS_Points;
 };
 

@@ -50,11 +50,12 @@ ArtificialPotentialField.prototype.calculateTargetsPotentialForce = function (
       Agent_Position,
       this.Targets_Position[0]
     );
+    
     let distanceVector = calculateWithVector(
       "minus",
       Agent_Position,
       this.Targets_Position[0]
-    );
+      );
     if (distance < this.Constants.tdr) {
       let coef = -this.Parameters.ktp / this.Constants.tdr;
       force = calculateWithVector("times", coef, distanceVector);
@@ -75,7 +76,7 @@ ArtificialPotentialField.prototype.calculateTargetsPotentialForce = function (
         Agents_Velocity[index]
       );
     }
-
+    
     force = calculateWithVector("minus", force, dampForce);
     forces.push(force);
   });
@@ -121,7 +122,6 @@ ArtificialPotentialField.prototype.calculateTotalForce = function (
 ) {
   // TPF = Target Potential Force
   this.TPF = this.calculateTargetsPotentialForce(currentVelocity);
-
   // OPF = Obstacle Potential Force
   this.OPF = this.calculateObstaclesPotentialForce();
   let totalAPF = [];

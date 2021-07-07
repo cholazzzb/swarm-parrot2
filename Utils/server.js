@@ -41,8 +41,8 @@ io.on("connection", (socket) => {
   EVENT_LISTS.forEach((EVENT) => {
     socket.on(EVENT, (data) => {
       io.in(type).emit(EVENT, data);
-      console.log(`--- EMIT DATA ${EVENT} ---`);
-      console.log(`Data, ${data}`);
+      // console.log(`--- EMIT DATA ${EVENT} ---`);
+      // console.log(`Data, ${data}`);
     });
   });
 

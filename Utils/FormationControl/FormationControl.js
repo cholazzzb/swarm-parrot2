@@ -10,12 +10,15 @@ function FormationControl(setup) {
     setup.targetsPosition
   );
 
-  let [initialAgentPosition1, initialAgentPosition2] =
-    setup.initialAgentsPosition;
-  this.NewAgentsTargetPos = [
-    initialAgentPosition1, // Quad1 [targetX, targetY, targetZ, targetYaw]
-    initialAgentPosition2, // Quad2 [targetX, targetY, targetZ, targetYaw]
-  ];
+  this.NewAgentsTargetPos = setup.initialAgentsPosition;
+  /**
+   * setup.initialAgentsPosition 
+   [
+     initialAgentPosition1, // Quad1 [targetX, targetY, targetZ, targetYaw]
+     initialAgentPosition2, // Quad2 [targetX, targetY, targetZ, targetYaw]
+   ];
+   * 
+   */
 }
 
 /**
@@ -39,7 +42,6 @@ FormationControl.prototype.calculateTargetPos = function (
       Agents_Yaw[Agent_Index]
     );
     let VS_Points = this.VS.VS_Points;
-    console.log("VS POINTS", VS_Points);
     let distance =
       Math.round(
         Math.sqrt(
@@ -47,7 +49,8 @@ FormationControl.prototype.calculateTargetPos = function (
             (posInGlobalFrame[1] - VS_Points[Agent_Index][1]) ** 2
         ) * 100
       ) / 100;
-
+    console.log(`Agen${Agent_Index} distance : ${distance}`);
+    console.log(`global pos ${posInGlobalFrame}  VS POINT ${VS_Points[Agent_Index]}`);
     if (distance < 0.1) {
       numberQuadrotorOnVSPoint++;
     }
@@ -67,50 +70,19 @@ FormationControl.prototype.calculateTargetPos = function (
   // Only for 2 quadrotors
   if (numberQuadrotorOnVSPoint == 2) {
     // Calculate APF Force
+    console.log("AGENTS VELOCITY", Agents_Velocity)
     let totalAPF = this.APF.calculateTotalForce(Agents_Velocity);
     // Get new VSPoint
     newPositions = this.VS.calculateNewVSPoint(totalAPF);
     this.NewAgentsTargetPos = newPositions;
   } else {
-    // Control the Quads to VS Point
+    let [target1, target2] = this.VS.VS_Points;
 
-    let VS_Points = this.VS.VS_Points;
     this.NewAgentsTargetPos = [
-      [VS_Points[0][0], VS_Points[0][1], VS_Points[0][2], 0],
-      [VS_Points[1][0], VS_Points[1][1], VS_Points[1][2], 0],
+      [target1[0], target1[1], target1[2], 0],
+      [target2[0], target2[1], target2[2], 0],
     ];
   }
-};
-
-var intervalNumber = 0;
-// Control Loop
-FormationControl.prototype.intervalControl = function (currentPositions) {
-  intervalNumber++;
-  let Agents_Position = currentPositions;
-  let Agents_Velocity = [
-    [
-      this.Map.history.xVel[0].data[this.Map.history.xVel[0].data.length - 1].y,
-      this.Map.history.yVel[0].data[this.Map.history.yVel[0].data.length - 1].y,
-      0,
-    ],
-    [
-      this.Map.history.xVel[1].data[this.Map.history.xVel[1].data.length - 1].y,
-      this.Map.history.yVel[1].data[this.Map.history.yVel[1].data.length - 1].y,
-      0,
-    ],
-  ]; 
-  // Navdata
-  let Agents_Yaw = [
-    this.currentDatas[0].currentYaw,
-    this.currentDatas[1].currentYaw,
-  ]; 
-
-
-  this.calculateTargetPos(Agents_Position, Agents_Velocity, Agents_Yaw);
-  let [
-    [targetX1, targetY1, targetZ1, targetYaw1],
-    [targetX2, targetY2, targetZ2, targetYaw2],
-  ] = this.NewAgentsTargetPos;
 };
 
 export default FormationControl;
