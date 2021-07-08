@@ -20,6 +20,10 @@ function DataRecorderFC(setup) {
   }
 }
 
+/**
+ * 
+ * @param {*} newDistanceData 
+ */
 DataRecorderFC.prototype.addDistanceData = function (newDistanceData) {
   this.data.distance_quads.time.push(newDistanceData.time);
   this.data.distance_quads.distance.push(newDistanceData.distance);

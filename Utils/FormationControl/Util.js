@@ -11,7 +11,7 @@ export function degToRad(deg) {
 export function calculateEucDistance(Pos1, Pos2) {
   let distance =
     Math.round(
-      Math.sqrt((Pos1[0] - Pos2[0]) ** 2 + (Pos1[1] - Pos2[2]) ** 2) * 100
+      Math.sqrt((Pos1[0] - Pos2[0]) ** 2 + (Pos1[1] - Pos2[1]) ** 2) * 100
     ) / 100;
 
   return distance;

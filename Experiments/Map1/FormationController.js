@@ -20,12 +20,12 @@ const setup = {
    * initial agents position : [x, y, z, yaw] (Quad Frame)
    * */
   initialAgentsPosition: [
-    [-1.0, -0.75, 0.7, 0],
-    [0.0, 1.25, 0.7, 0],
+    [0.0, 0.0, 0.7, 0],
+    [0.0, 3.0, 0.7, 0],
   ],
   obstaclesPosition: [[2, 0, 0.7]],
-  targetsPosition: [[5, 0.75, 0.7]],
-  initialFRP: [0, 0.75, 0.7],
+  targetsPosition: [[5, 1.5, 0.7]],
+  initialFRP: [0, 1.5, 0.7],
 };
 
 const Recorder = new DataRecorderFC(setup);
@@ -33,7 +33,7 @@ const Recorder = new DataRecorderFC(setup);
 const controller = new FormationControl(setup);
 let current_map = {
   agents_position: [...setup.initialAgentsPosition],
-  agents_velocity: [[0, 0, 0]], // FRP Vel,
+  agents_velocity: [[0, 0, 0]], // FRP Vel
   obstacles_position: [...setup.obstaclesPosition],
   targets_position: [...setup.targetsPosition],
 };
@@ -109,6 +109,11 @@ connectionTunnel.on(QUAD1_REQUEST, (request_data) => {
     });
     let time = (new Date().getTime() - initial_time) / 1000;
 
+    console.log("DONG DONG", current_map.agents_position)
+    console.log("WHUTTTT", Util.calculateEucDistance(
+      current_map.agents_position[0],
+      current_map.agents_position[1]
+    ))
     Recorder.addDistanceData({
       time: time,
       distance: Util.calculateEucDistance(
