@@ -49,8 +49,8 @@ FormationControl.prototype.calculateTargetPos = function (
             (posInGlobalFrame[1] - VS_Points[Agent_Index][1]) ** 2
         ) * 100
       ) / 100;
-    console.log(`Agen${Agent_Index} distance : ${distance}`);
-    console.log(`global pos ${posInGlobalFrame}  VS POINT ${VS_Points[Agent_Index]}`);
+    // console.log(`Agen${Agent_Index} distance : ${distance}`);
+    // console.log(`global pos ${posInGlobalFrame}  VS POINT ${VS_Points[Agent_Index]}`);
     if (distance < 0.1) {
       numberQuadrotorOnVSPoint++;
     }
@@ -74,6 +74,7 @@ FormationControl.prototype.calculateTargetPos = function (
     let totalAPF = this.APF.calculateTotalForce(Agents_Velocity);
     // Get new VSPoint
     newPositions = this.VS.calculateNewVSPoint(totalAPF);
+    this.APF.setAgentsPosition([this.VS.Formation_Reference_Point])
     this.NewAgentsTargetPos = newPositions;
   } else {
     let [target1, target2] = this.VS.VS_Points;

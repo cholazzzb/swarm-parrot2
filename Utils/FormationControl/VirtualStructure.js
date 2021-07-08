@@ -10,8 +10,8 @@ function getShapePoints(shape_type) {
   switch (shape_type) {
     case "line":
       shape_points = [
-        [0, -0.75, 1],
-        [0, 0.75, 1],
+        [0, -0.75, 0.7],
+        [0, 0.75, 0.7],
       ];
       break;
 

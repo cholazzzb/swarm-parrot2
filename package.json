@@ -10,6 +10,8 @@
     "takeoff": "node ./Utils/takeoff.js",
     "server": "node ./Utils/server.js",
     "test": "nodemon ./Utils/test.js",
+    "M1Q1Sim": "node ./Experiments/Map1/Quad1Sim2.js",
+    "M1Q2Sim": "node ./Experiments/Map1/Quad2Sim2.js",
     "M1Q1": "node ./Experiments/Map1/Quad1.js",
     "M1Q2": "node ./Experiments/Map1/Quad2.js",
     "M1FC": "nodemon ./Experiments/Map1/FormationController.js",

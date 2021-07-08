@@ -77,6 +77,8 @@ ArtificialPotentialField.prototype.calculateTargetsPotentialForce = function (
       );
     }
     
+    console.log("APF AGENTS", this.Agents_Position)
+    console.log("force damp Force", force, Agents_Velocity)
     force = calculateWithVector("minus", force, dampForce);
     forces.push(force);
   });
@@ -92,6 +94,7 @@ ArtificialPotentialField.prototype.calculateObstaclesPotentialForce =
       this.Obstacles_Position.forEach((Obstacle_Position) => {
         // If the obstacle detected ( distance to obstacle less than odr/obstacle detectring range)
         let distance = calculateEucDistance(Agent_Position, Obstacle_Position);
+        console.log("FRP in APF", Agent_Position)
         let distanceVector = calculateWithVector(
           "minus",
           Agent_Position,
@@ -112,6 +115,7 @@ ArtificialPotentialField.prototype.calculateObstaclesPotentialForce =
           force = calculateWithVector("plus", force, newForce);
         }
       });
+      
       forces.push(force);
     });
     return forces;
@@ -124,12 +128,15 @@ ArtificialPotentialField.prototype.calculateTotalForce = function (
   this.TPF = this.calculateTargetsPotentialForce(currentVelocity);
   // OPF = Obstacle Potential Force
   this.OPF = this.calculateObstaclesPotentialForce();
+  console.log("OPF", this.OPF)
+  console.log("TPF", this.TPF)
   let totalAPF = [];
   this.TPF.forEach((Force, Index) => {
     let totalForce = calculateWithVector("plus", Force, this.OPF[Index]);
     totalAPF.push(totalForce);
   });
-
+  console.log("TOTAL APF", totalAPF)
+  console.log("-----")
   return totalAPF;
 };
 

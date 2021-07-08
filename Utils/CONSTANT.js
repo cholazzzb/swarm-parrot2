@@ -1,9 +1,7 @@
 export const QUAD1_NAVDATA = "QUAD1_NAVDATA";
-export const QUAD1_VELDATA = "QUAD1_VELDATA";
 export const QUAD1_COMMAND = "QUAD1_COMMAND";
 export const QUAD1_REQUEST = "QUAD1_REQUEST";
 
 export const QUAD2_NAVDATA = "QUAD2_NAVDATA";
-export const QUAD2_VELDATA = "QUAD2_VELDATA";
 export const QUAD2_COMMAND = "QUAD2_COMMAND";
 export const QUAD2_REQUEST = "QUAD2_REQUEST";

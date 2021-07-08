@@ -2,11 +2,9 @@ import http from "http";
 import * as socketIO from "socket.io";
 import {
   QUAD1_NAVDATA,
-  QUAD1_VELDATA,
   QUAD1_COMMAND,
   QUAD1_REQUEST,
   QUAD2_NAVDATA,
-  QUAD2_VELDATA,
   QUAD2_COMMAND,
   QUAD2_REQUEST,
 } from "./CONSTANT.js";
@@ -22,11 +20,9 @@ const PORT = 4000;
 
 const EVENT_LISTS = [
   QUAD1_NAVDATA,
-  QUAD1_VELDATA,
   QUAD1_COMMAND,
   QUAD1_REQUEST,
   QUAD2_NAVDATA,
-  QUAD2_VELDATA,
   QUAD2_COMMAND,
   QUAD2_REQUEST,
 ];

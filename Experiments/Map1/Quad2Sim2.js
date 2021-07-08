@@ -56,6 +56,13 @@ control1.on("controlData", (newData) => {
   };
 });
 
+let fakeSensor = {
+  x: 0,
+  y: 1.25,
+  z: 0.7,
+  yaw: 0
+}
+
 socketConnection.on(QUAD2_COMMAND, (command_data) => {
   console.log("COMMAND DATA", command_data);
   if (command_data.command == "GO") {
@@ -63,6 +70,8 @@ socketConnection.on(QUAD2_COMMAND, (command_data) => {
     currentTarget = command_data.target[1];
     currentTarget.z = 0.7;
     console.log("NEW TARGET", currentTarget);
+    fakeSensor = currentTarget
+    socketConnection.emit(QUAD2_NAVDATA, fakeSensor)
     control1.go(currentTarget);
   } else {
     console.log("LAND!");
