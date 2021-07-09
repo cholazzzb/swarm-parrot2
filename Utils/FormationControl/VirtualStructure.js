@@ -10,8 +10,8 @@ function getShapePoints(shape_type) {
   switch (shape_type) {
     case "line":
       shape_points = [
-        [0, -1.50, 0.7],
-        [0, 1.50, 0.7],
+        [0, -0.75, 0.7],
+        [0, 0.75, 0.7],
       ];
       break;
 
@@ -28,19 +28,25 @@ function VirtualStructure(Formation_Reference_Point) {
    * Assumption : z is constant
    * POSITION
    * Virtual Structure = ()
-   * Quadrotor 1 =()
+   * Quadrotor 1 = ()
    * Quadrotor 2 = ()
    *
    */
   this.Heading_Angle = 0; // Yaw / Phi in Degree
   this.Shape_Points = getShapePoints("line"); // Agent Position from Formation Reference Point
   this.Formation_Reference_Point = Formation_Reference_Point;
-  this.VS_Points = [] // Current Quadrotors Position in VS
+  this.VS_Points = []; // Current Quadrotors Position in VS
   this.Shape_Points.forEach((shape_point) => {
-    this.VS_Points.push(util.calculateWithVector("plus", this.Formation_Reference_Point, shape_point))
-  })
+    this.VS_Points.push(
+      util.calculateWithVector(
+        "plus",
+        this.Formation_Reference_Point,
+        shape_point
+      )
+    );
+  });
   // this.Current_Positions = []; // Current Quadrotors Position in Real World
-  this.Movement_Range = 0.1
+  this.Movement_Range = 0.1;
 }
 
 VirtualStructure.prototype.setCurrentVSPoints = function (Current_VS_Points) {

@@ -21,11 +21,11 @@ const setup = {
    * */
   initialAgentsPosition: [
     [0.0, 0.0, 0.7, 0],
-    [0.0, 3.0, 0.7, 0],
+    [0.0, 1.5, 0.7, 0],
   ],
-  obstaclesPosition: [[2, 0, 0.7]],
-  targetsPosition: [[5, 1.5, 0.7]],
-  initialFRP: [0, 1.5, 0.7],
+  obstaclesPosition: [],
+  targetsPosition: [[1, 0.75, 0.7]],
+  initialFRP: [0, 0.75, 0.7],
 };
 
 const Recorder = new DataRecorderFC(setup);
@@ -124,10 +124,10 @@ connectionTunnel.on(QUAD1_REQUEST, (request_data) => {
 
     // If already at destination -> Takeoff
     if (
-      (controller.VS.Formation_Reference_Point[0] ==
-        setup.targetsPosition[0][0]) &
-      (controller.VS.Formation_Reference_Point[1] ==
-        setup.targetsPosition[0][1])
+      (Math.abs(controller.VS.Formation_Reference_Point[0] -
+        setup.targetsPosition[0][0])) < 0.1 &
+      (Math.abs(controller.VS.Formation_Reference_Point[1] -
+        setup.targetsPosition[0][1])) < 0.1
     ) {
       connectionTunnel.emit(QUAD1_COMMAND, {
         command: "LAND",
@@ -215,10 +215,10 @@ connectionTunnel.on(QUAD2_REQUEST, (request_data) => {
 
     // If already at destination -> Takeoff
     if (
-      (controller.VS.Formation_Reference_Point[0] ==
-        setup.targetsPosition[0][0]) &
-      (controller.VS.Formation_Reference_Point[1] ==
-        setup.targetsPosition[0][1])
+      (Math.abs(controller.VS.Formation_Reference_Point[0] -
+        setup.targetsPosition[0][0])) < 0.1 &
+      (Math.abs(controller.VS.Formation_Reference_Point[1] -
+        setup.targetsPosition[0][1])) < 0.1
     ) {
       connectionTunnel.emit(QUAD2_COMMAND, {
         command: "LAND",
