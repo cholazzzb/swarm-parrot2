@@ -46,7 +46,7 @@ function VirtualStructure(Formation_Reference_Point) {
     );
   });
   // this.Current_Positions = []; // Current Quadrotors Position in Real World
-  this.Movement_Range = 0.1;
+  this.Movement_Range = 0.3;
 }
 
 VirtualStructure.prototype.setCurrentVSPoints = function (Current_VS_Points) {

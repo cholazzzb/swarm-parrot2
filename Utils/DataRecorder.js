@@ -18,6 +18,9 @@ const dataNames = [
   "uy",
   "uz",
   "uyaw",
+  "targetX",
+  "targetY",
+  "targetZ"
 ];
 
 function DataRecorder() {

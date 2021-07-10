@@ -23,8 +23,8 @@ const setup = {
     [0.0, 0.0, 0.7, 0],
     [0.0, 1.5, 0.7, 0],
   ],
-  obstaclesPosition: [],
-  targetsPosition: [[1, 0.75, 0.7]],
+  obstaclesPosition: [[2.5, 0, 0.7]],
+  targetsPosition: [[5, 0.75, 0.7]],
   initialFRP: [0, 0.75, 0.7],
 };
 

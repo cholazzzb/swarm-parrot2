@@ -4,10 +4,10 @@ import sys
 # Import Data
 folderName = "./Data/Map1"
 sys.path.append(folderName)
-from Quad1 import Quad1 as exData
+from Quad2 import Quad2 as exData
 
 # Filename for saved figure
-fileName = "Quad1" 
+fileName = "Quad2" 
 
 '''
 --- Format of exData ---
@@ -29,7 +29,10 @@ keys : {
     "ux",
     "uy",
     "uz",
-    "uyaw"
+    "uyaw",
+    "targetX",
+    "targetY",
+    "targetZ
 }
 '''
 
@@ -39,6 +42,9 @@ plt.title("Posisi X, Y, Z")
 plt.plot(exData['time'], exData['stateX'], label="xPos")
 plt.plot(exData['time'], exData['stateY'], label="yPos")
 plt.plot(exData['time'], exData['stateZ'], label="zPos")
+plt.plot(exData['time'], exData['targetX'], label="xTarget")
+plt.plot(exData['time'], exData['targetY'], label="yTarget")
+plt.plot(exData['time'], exData['targetZ'], label="zTarget")
 plt.xlabel("Waktu (sekon)")
 plt.ylabel("Posisi (meter)")
 plt.legend(loc="upper left")

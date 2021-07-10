@@ -42,6 +42,9 @@ control1.on("controlData", (newData) => {
     newData.control.uy,
     newData.control.uz,
     newData.control.uyaw,
+    currentTarget.x,
+    currentTarget.y,
+    currentTarget.z
   ]);
   socketConnection.emit(QUAD2_NAVDATA, {
     x: newData.state.x,

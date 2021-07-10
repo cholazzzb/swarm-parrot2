@@ -6,7 +6,7 @@ function ArtificialPotentialField(
   Targets_Position
 ) {
   this.Constants = {
-    odr: 4,
+    odr: 2,
     tdr: 1,
   };
   this.Parameters = {
