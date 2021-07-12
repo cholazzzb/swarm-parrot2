@@ -44,7 +44,7 @@ control1.on("controlData", (newData) => {
     newData.control.uyaw,
     currentTarget.x,
     currentTarget.y,
-    currentTarget.z
+    currentTarget.z,
   ]);
   socketConnection.emit(QUAD1_NAVDATA, {
     x: newData.state.x,
@@ -58,7 +58,6 @@ control1.on("controlData", (newData) => {
     z: newData.state.z,
   };
   console.log("CURRENT POS", currentPos);
-
 });
 
 socketConnection.on(QUAD1_COMMAND, (command_data) => {
@@ -89,7 +88,8 @@ try {
 
   console.log("GO!");
   client1.after(5000, () => {
-    intervalId;
+    // intervalId;
+    control1.go({ x: 0.5, y: 0, z: 0.7, yaw: 0 });
   });
 } catch (error) {
   client1.stop();

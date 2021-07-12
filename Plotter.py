@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
 import sys
 
+# Filename for saved figure
+fileName = "Quad2" 
+
 # Import Data
 folderName = "./Data/Map1"
 sys.path.append(folderName)
 from Quad2 import Quad2 as exData
-
-# Filename for saved figure
-fileName = "Quad1" 
 
 '''
 --- Format of exData ---
