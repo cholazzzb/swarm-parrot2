@@ -18,6 +18,7 @@ client1.on("navdata", (navdata) => {
 client2.on("navdata", (navdata) => {
   if (navdata != undefined) {
     let demo = Object(navdata.demo);
+    // console.log("WOI", demo)
     console.log(`(ip: .1) Battery : ${demo.batteryPercentage}`);
   }
 });

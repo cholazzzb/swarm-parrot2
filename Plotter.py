@@ -7,7 +7,7 @@ sys.path.append(folderName)
 from Quad2 import Quad2 as exData
 
 # Filename for saved figure
-fileName = "Quad2" 
+fileName = "Quad1" 
 
 '''
 --- Format of exData ---

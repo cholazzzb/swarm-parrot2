@@ -57,6 +57,8 @@ control1.on("controlData", (newData) => {
     y: newData.state.y,
     z: newData.state.z,
   };
+  console.log("CURRENT POS", currentPos);
+
 });
 
 socketConnection.on(QUAD1_COMMAND, (command_data) => {

@@ -23,8 +23,8 @@ const setup = {
     [0.0, 0.0, 0.7, 0],
     [0.0, 1.5, 0.7, 0],
   ],
-  obstaclesPosition: [[2.5, 0, 0.7]],
-  targetsPosition: [[5, 0.75, 0.7]],
+  obstaclesPosition: [],
+  targetsPosition: [[2, 0.75, 0.7]],
   initialFRP: [0, 0.75, 0.7],
 };
 
@@ -109,8 +109,8 @@ connectionTunnel.on(QUAD1_REQUEST, (request_data) => {
     });
     let time = (new Date().getTime() - initial_time) / 1000;
 
-    console.log("DONG DONG", current_map.agents_position)
-    console.log("WHUTTTT", Util.calculateEucDistance(
+    console.log("AGENTS POS", current_map.agents_position)
+    console.log("DISTANCE BETWEEN QUADS", Util.calculateEucDistance(
       current_map.agents_position[0],
       current_map.agents_position[1]
     ))
@@ -125,9 +125,9 @@ connectionTunnel.on(QUAD1_REQUEST, (request_data) => {
     // If already at destination -> Takeoff
     if (
       (Math.abs(controller.VS.Formation_Reference_Point[0] -
-        setup.targetsPosition[0][0])) < 0.1 &
+        setup.targetsPosition[0][0])) < 0.2 &
       (Math.abs(controller.VS.Formation_Reference_Point[1] -
-        setup.targetsPosition[0][1])) < 0.1
+        setup.targetsPosition[0][1])) < 0.2
     ) {
       connectionTunnel.emit(QUAD1_COMMAND, {
         command: "LAND",
@@ -216,9 +216,9 @@ connectionTunnel.on(QUAD2_REQUEST, (request_data) => {
     // If already at destination -> Takeoff
     if (
       (Math.abs(controller.VS.Formation_Reference_Point[0] -
-        setup.targetsPosition[0][0])) < 0.1 &
+        setup.targetsPosition[0][0])) < 0.2 &
       (Math.abs(controller.VS.Formation_Reference_Point[1] -
-        setup.targetsPosition[0][1])) < 0.1
+        setup.targetsPosition[0][1])) < 0.2
     ) {
       connectionTunnel.emit(QUAD2_COMMAND, {
         command: "LAND",

@@ -19,15 +19,15 @@ client1.after(10000, () => {
   client1.land();
 });
 
-client2.on("navdata", (navdata) => {
-  if (navdata.demo != undefined) {
-    console.log("Battery QUAD 2", navdata.demo.batteryPercentage);
-  }
-});
+// client2.on("navdata", (navdata) => {
+//   if (navdata.demo != undefined) {
+//     console.log("Battery QUAD 2", navdata.demo.batteryPercentage);
+//   }
+// });
 
-client2.takeoff();
-control2.zero();
+// client2.takeoff();
+// control2.zero();
 
-client2.after(10000, () => {
-  client2.land();
-});
+// client2.after(10000, () => {
+//   client2.land();
+// });
