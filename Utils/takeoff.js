@@ -8,16 +8,16 @@ var [client2, control2, mission2] = autonomy.createMission({
 });
 console.log("success connecting");
 
-// client1.on("navdata", (navdata) => {
-//   if (navdata.demo != undefined) {
-//     console.log("Battery QUAD 1", navdata.demo.batteryPercentage);
-//   }
-// });
-// client1.takeoff();
-// control1.zero();
-// client1.after(10000, () => {
-//   client1.land();
-// });
+client1.on("navdata", (navdata) => {
+  if (navdata.demo != undefined) {
+    console.log("Battery QUAD 1", navdata.demo.batteryPercentage);
+  }
+});
+client1.takeoff();
+control1.zero();
+client1.after(10000, () => {
+  client1.land();
+});
 
 client2.on("navdata", (navdata) => {
   if (navdata.demo != undefined) {
